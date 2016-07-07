@@ -2,7 +2,12 @@
 namespace Admin\Controller;
 use Think\Controller;
 class BackendController extends Controller {
-    public function index(){
-        $this->show('aaaaaaaa');
-    }
+	public function __construct() {
+		parent::__construct();
+		
+		//判断是否登录
+		if(!session('admin')){
+			$this->redirect('Index/index');
+		}
+	}
 }
