@@ -4,6 +4,7 @@ use Think\Controller;
 use Think\Verify;
 class IndexController extends Controller {
 	public function __construct(){
+	    parent::__construct();
 		if(session('admin')){
 			$this->redirect('Foods/index');
 		}
