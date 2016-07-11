@@ -1,4 +1,44 @@
 <include file="Layout/header" />
 <div class="admin">
+	<div class="tab">
+		<div class="tab-head">
+			<ul class="tab-nav">
+				<li class="active"><a href="#tab-set">添加菜系</a></li>
+			</ul>
+		</div>
+		<div class="tab-body">
+			<br />
+			<div class="tab-panel active" id="tab-set">
+				<form method="post" class="form-x" action="{:U('Foods/addCuisine')}">
+					<div class="form-group">
+						<div class="label">
+							<label>所属三大菜系</label>
+						</div>
+						<div class="field">
+							<div class="button-group button-group-small radio">
+								<label class="button active">
+									<input name="cstyle" value="1" checked="checked" type="radio"><span class="icon icon-check"></span> 中国菜系</label>
+								<label class="button">
+									<input name="cstyle" value="2" type="radio"><span class="icon icon-check"></span> 法国菜系</label>
+								<label class="button">
+									<input name="cstyle" value="3" type="radio"><span class="icon icon-check"></span> 土耳其菜</label>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="label">
+							<label for="cname">菜系名称</label>
+						</div>
+						<div class="field">
+							<input type="text" class="input" id="cname" name="cname" size="50" placeholder="菜系名称" data-validate="required:请填写菜系名称" />
+						</div>
+					</div>
+					<div class="form-button">
+						<button class="button bg-main" type="submit">提交</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
 </div>
 <include file="Layout/footer" />

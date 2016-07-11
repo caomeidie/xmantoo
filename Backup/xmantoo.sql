@@ -30,7 +30,23 @@ CREATE TABLE `xman_admin` (
 
 /*Data for the table `xman_admin` */
 
-insert  into `xman_admin`(`id`,`admin_name`,`password`,`add_time`) values (1,'admin','8d969eef6ecad3c29a3a629280e686cf0c3f5d5a',0);
+insert  into `xman_admin`(`id`,`admin_name`,`password`,`add_time`) values (1,'admin','7c4a8d09ca3762af61e59520943dc26494f8941b',0);
+
+/*Table structure for table `xman_cuisine` */
+
+DROP TABLE IF EXISTS `xman_cuisine`;
+
+CREATE TABLE `xman_cuisine` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `cname` varchar(50) NOT NULL COMMENT '菜系名称',
+  `cstyle` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '所属三大菜系：1中国菜，2法国菜，3土耳其菜',
+  `add_time` int(11) unsigned NOT NULL COMMENT '添加时间',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+
+/*Data for the table `xman_cuisine` */
+
+insert  into `xman_cuisine`(`id`,`cname`,`cstyle`,`add_time`) values (1,'粤菜',1,1468249152),(2,'川菜',1,1468249306),(3,'鲁菜',1,1468249427),(4,'淮扬菜',1,1468249506),(5,'浙菜',1,1468249514),(6,'闽菜',1,1468249520),(7,'湘菜',1,1468249525),(8,'徽菜',1,1468249531),(9,'东北菜',1,1468249537),(10,'赣菜',1,1468249551),(11,'冀菜',1,1468249557),(12,'豫菜',1,1468249565),(13,'鄂菜',1,1468249569),(14,'本帮菜',1,1468249574),(15,'客家菜',1,1468249578),(16,'京菜',1,1468249586),(17,'清真菜',1,1468249592);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
