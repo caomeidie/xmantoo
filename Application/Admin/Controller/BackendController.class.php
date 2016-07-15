@@ -9,5 +9,7 @@ class BackendController extends Controller {
 		if(!session('admin')){
 			$this->redirect('Index/index');
 		}
+		$this->assign('controller',CONTROLLER_NAME);
+		$this->assign('action',ACTION_NAME);
 	}
 }
