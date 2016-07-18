@@ -48,6 +48,20 @@ CREATE TABLE `xman_cuisine` (
 
 insert  into `xman_cuisine`(`id`,`cname`,`cstyle`,`add_time`) values (1,'粤菜',1,1468249152),(2,'川菜',1,1468249306),(3,'鲁菜',1,1468249427),(4,'淮扬菜',1,1468249506),(5,'浙菜',1,1468249514),(6,'闽菜',1,1468249520),(7,'湘菜',1,1468249525),(8,'徽菜',1,1468249531),(9,'东北菜',1,1468249537),(10,'赣菜',1,1468249551),(11,'冀菜',1,1468249557),(12,'豫菜',1,1468249565),(13,'鄂菜',1,1468249569),(14,'本帮菜',1,1468249574),(15,'客家菜',1,1468249578),(16,'京菜',1,1468249586),(17,'清真菜',1,1468249592);
 
+/*Table structure for table `xman_foods` */
+
+DROP TABLE IF EXISTS `xman_foods`;
+
+CREATE TABLE `xman_foods` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `foods_name` varchar(100) NOT NULL COMMENT '菜品名称',
+  `cstyle` int(11) unsigned NOT NULL COMMENT '菜系id',
+  `sub_title` varchar(100) NOT NULL COMMENT '子标题',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+/*Data for the table `xman_foods` */
+
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;

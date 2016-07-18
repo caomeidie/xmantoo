@@ -32,6 +32,8 @@ class FoodsController extends BackendController {
     }
     
     public function listCuisine(){
+        $cuisine_list = M('Cuisine')->select();
+        $this->assign('cuisine_list',$cuisine_list);
     	$this->display();
     }
 }
