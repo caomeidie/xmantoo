@@ -32,9 +32,10 @@ class IndexController extends Controller {
     	$Verify = new Verify();
     	$Verify->fontSize = 13;
     	$Verify->useNoise = false;
-    	$Verify->imageW = 80;
+    	$Verify->imageW = 95;
     	$Verify->imageH = 32;
     	$Verify->length = 4;
+    	$Verify->fontttf = '4.ttf';
     	$Verify->entry();
     }
     

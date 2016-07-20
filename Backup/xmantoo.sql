@@ -55,8 +55,9 @@ DROP TABLE IF EXISTS `xman_foods`;
 CREATE TABLE `xman_foods` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `foods_name` varchar(100) NOT NULL COMMENT '菜品名称',
-  `cstyle` int(11) unsigned NOT NULL COMMENT '菜系id',
-  `sub_title` varchar(100) NOT NULL COMMENT '子标题',
+  `cuisines_id` int(11) unsigned NOT NULL COMMENT '菜系id',
+  `subtitle` varchar(100) NOT NULL COMMENT '子标题',
+  `status` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '状态：1正常，0关闭',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
