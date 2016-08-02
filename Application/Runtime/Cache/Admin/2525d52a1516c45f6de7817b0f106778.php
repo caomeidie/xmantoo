@@ -79,13 +79,16 @@
 	<div class="tab">
 		<div class="tab-head">
 			<ul class="tab-nav">
-				<li class="active"><a href="#tab-set">添加菜品</a></li>
+				<li class="active"><a href="#tab-base">基本信息</a></li>
+				<li><a href="#tab-ready">准备阶段</a></li>
+				<li><a href="#tab-doing">制作阶段</a></li>
+				<li><a href="#tab-store">存储阶段</a></li>
 			</ul>
 		</div>
-		<div class="tab-body">
-			<br />
-			<div class="tab-panel active" id="tab-set">
-				<form method="post" class="form-x" action="system.html">
+		<form method="post" class="form-x" action="system.html">
+			<div class="tab-body">
+				<br />
+				<div class="tab-panel active" id="tab-base">
 					<div class="form-group">
 						<div class="label">
 							<label for="foods_name">菜品名称</label>
@@ -135,16 +138,51 @@
 							<script id="editor" type="text/plain" style="width:100%;height:300px;"></script>
 						</div>
 					</div>
-					<div class="form-button">
-						<button class="button bg-main" type="submit">提交</button>
+				</div>
+				<div class="tab-panel" id="tab-ready">
+					<div class="form-group">
+						<div class="label">
+							<label for="foods_name">所需工具</label>
+						</div>
+						<div class="field" id="tools_list">
+							<input type="text" class="input" name="tools" size="50" placeholder="工具名" data-validate="required:请填写工具名" /><span id="add_tools">+</span>
+							<input type="text" class="input" name="tools" size="50" placeholder="工具名" data-validate="required:请填写工具名" /><span id="add_tools">-</span>
+						</div>
 					</div>
-				</form>
+					<div class="form-group">
+						<div class="label">
+							<label for="foods_name">主材</label>
+						</div>
+						<div class="field">
+							<input type="text" class="input" id="foods_name" name="foods_name" size="50" placeholder="菜品名称" data-validate="required:请填写菜品的名称" />
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="label">
+							<label for="foods_name">辅材</label>
+						</div>
+						<div class="field">
+							<input type="text" class="input" id="foods_name" name="foods_name" size="50" placeholder="菜品名称" data-validate="required:请填写菜品的名称" />
+						</div>
+					</div>
+				</div>
+				<div class="tab-panel" id="tab-doing">333
+				</div>
+				<div class="tab-panel" id="tab-store">444
+				</div>
 			</div>
-		</div>
+		
+			<div class="form-button">
+				<button class="button bg-main" type="submit">提交</button>
+			</div>
+		</form>
 	</div>
 </div>
 <script type="text/javascript">
 	var ue = UE.getEditor('editor');
+	$("#add_tools").click(function(){
+		$("#tools_list").append('<input type="text" class="input" name="tools" size="50" placeholder="工具名" data-validate="required:请填写工具名" /><span id="add_tools">-</span>');
+	});
 </script>
 </body>
 

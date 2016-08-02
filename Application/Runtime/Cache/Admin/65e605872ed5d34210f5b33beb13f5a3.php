@@ -40,17 +40,17 @@
 						<li <?php if($controller == 'Foods'): ?>class="active"<?php endif; ?>>
 							<a href="<?php echo U('Foods/index');?>" class="icon-cog">菜品</a>
 							<ul>
+								<li <?php if($action == 'index'): ?>class="active"<?php endif; ?>><a href="<?php echo U('Foods/index');?>">菜品管理</a></li>
+								<li <?php if($action == 'addFoods'): ?>class="active"<?php endif; ?>><a href="<?php echo U('Foods/addFoods');?>">添加菜品</a></li>
 								<li <?php if($action == 'addCuisine'): ?>class="active"<?php endif; ?>><a href="<?php echo U('Foods/addCuisine');?>">添加菜系</a></li>
 								<li <?php if($action == 'listCuisine'): ?>class="active"<?php endif; ?>><a href="<?php echo U('Foods/listCuisine');?>">菜系管理</a></li>
-								<li <?php if($action == 'addFoods'): ?>class="active"<?php endif; ?>><a href="<?php echo U('Foods/addFoods');?>">添加菜品</a></li>
-								<li <?php if($action == 'index'): ?>class="active"<?php endif; ?>><a href="<?php echo U('Foods/index');?>">菜品管理</a></li>
 							</ul>
 						</li>
 						<li <?php if($controller == 'Article'): ?>class="active"<?php endif; ?>>
 							<a href="<?php echo U('Article/index');?>" class="icon-file-text">文章</a>
 							<ul>
-								<li <?php if($action == 'addArticle'): ?>class="active"<?php endif; ?>><a href="<?php echo U('Article/addArticle');?>">添加文章</a></li>
 								<li <?php if($action == 'index'): ?>class="active"<?php endif; ?>><a href="<?php echo U('Article/index');?>">文章管理</a></li>
+								<li <?php if($action == 'addArticle'): ?>class="active"<?php endif; ?>><a href="<?php echo U('Article/addArticle');?>">添加文章</a></li>
 								<li <?php if($action == 'addNotice'): ?>class="active"<?php endif; ?>><a href="<?php echo U('Article/addNotice');?>">添加公告</a></li>
 								<li <?php if($action == 'listNotice'): ?>class="active"<?php endif; ?>><a href="<?php echo U('Article/listNotice');?>">公告管理</a></li>
 							</ul>
