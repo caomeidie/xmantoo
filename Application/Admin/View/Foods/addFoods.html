@@ -18,6 +18,14 @@
 				<div class="tab-panel active" id="tab-base">
 					<div class="form-group">
 						<div class="label">
+							<label for="subtitle">标题</label>
+						</div>
+						<div class="field">
+							<input type="text" class="input" id="title" name="title" size="50" placeholder="请填写标题" data-validate="required:请填写标题" />
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="label">
 							<label for="foods_name">菜品名称</label>
 						</div>
 						<div class="field">
@@ -53,10 +61,10 @@
 					</div>
 					<div class="form-group">
 						<div class="label">
-							<label for="subtitle">副标题</label>
+							<label for="cover">标志</label>
 						</div>
 						<div class="field">
-							<input type="text" class="input" id="subtitle" name="subtitle" size="50" placeholder="请填写副标题" data-validate="required:请填写副标题" />
+							<a class="button input-file" href="javascript:void(0);">+ 浏览文件<input size="100" type="file" name="cover" data-validate="required:请选择上传文件,regexp#.+.(jpg|jpeg|png|gif)$:只能上传jpg|gif|png格式文件" /></a>
 						</div>
 					</div>
 					<div class="form-group">
@@ -71,31 +79,49 @@
 				<div class="tab-panel" id="tab-ready">
 					<div class="form-group">
 						<div class="label">
-							<label for="foods_name">所需工具</label>
+							<label for="tools">所需工具</label>
 						</div>
 						<div class="field" id="tools_list">
-							<input type="text" class="input" name="tools" size="50" placeholder="工具名" data-validate="required:请填写工具名" /><span id="add_tools">+</span>
-							<input type="text" class="input" name="tools" size="50" placeholder="工具名" data-validate="required:请填写工具名" /><span id="add_tools">-</span>
+							<div><input type="text" class="input line70" name="tools[]" size="50" placeholder="工具名" data-validate="required:请填写工具名" /><span id="add_tools">+</span></div>
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="label">
-							<label for="foods_name">主材</label>
+							<label for="ingredient">主材</label>
 						</div>
-						<div class="field">
-							<input type="text" class="input" id="foods_name" name="foods_name" size="50" placeholder="菜品名称" data-validate="required:请填写菜品的名称" />
+						<div class="field" id="ingredient_list">
+							<div><input type="text" class="input line70" name="ingredient[]" size="50" placeholder="主材" data-validate="required:请填写主材" /><span id="add_ingredient">+</span></div>
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="label">
-							<label for="foods_name">辅材</label>
+							<label for="accessory">辅材</label>
+						</div>
+						<div class="field" id="accessory_list">
+							<div><input type="text" class="input line70" name="accessory[]" size="50" placeholder="辅材" data-validate="required:请填写辅材" /><span id="add_accessory">+</span></div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="label">
+							<label for="pretreatment">预处理</label>
 						</div>
 						<div class="field">
-							<input type="text" class="input" id="foods_name" name="foods_name" size="50" placeholder="菜品名称" data-validate="required:请填写菜品的名称" />
+							<textarea class="input" id="pretreatment" name="pretreatment" rows="5" cols="50" placeholder="预处理"></textarea>
 						</div>
 					</div>
 				</div>
-				<div class="tab-panel" id="tab-doing">333
+				<div class="tab-panel" id="tab-doing">
+					<div class="form-group">
+						<div class="label">
+							<label for="pretreatment">步骤</label>
+						</div>
+						<div class="field" id="steps_list">
+							<div>
+							<input type="text" class="input line50" name="steps_time[]" size="50" placeholder="所需时间" data-validate="required:请填写所需时间" /><span id="add_steps">+</span>
+							<textarea class="input line50" name="steps[]" rows="3" cols="50" placeholder="步骤"></textarea>
+							</div>
+						</div>
+					</div>
 				</div>
 				<div class="tab-panel" id="tab-store">444
 				</div>
@@ -110,7 +136,31 @@
 <script type="text/javascript">
 	var ue = UE.getEditor('editor');
 	$("#add_tools").click(function(){
-		$("#tools_list").append('<input type="text" class="input" name="tools'+1+'" size="50" placeholder="工具名" data-validate="required:请填写工具名" /><span id="add_tools">-</span>');
+		$("#tools_list").append('<div><input type="text" class="input line70" name="tools[]" size="50" placeholder="工具名" data-validate="required:请填写工具名" /><span class="drop_tools">-</span></div>');
+	});
+	$(document).on("click",".drop_tools",function(){
+		$(this).parent().remove();
+	});
+	$("#add_ingredient").click(function(){
+		$("#ingredient_list").append('<div><input type="text" class="input line70" name="ingredient[]" size="50" placeholder="主材" data-validate="required:请填写主材" /><span class="drop_ingredient">-</span></div>');
+	});
+	$(document).on("click",".drop_ingredient",function(){
+		$(this).parent().remove();
+	});
+	$("#add_accessory").click(function(){
+		$("#accessory_list").append('<div><input type="text" class="input line70" name="accessory[]" size="50" placeholder="辅材" data-validate="required:请填写辅材" /><span class="drop_accessory">-</span></div>');
+	});
+	$(document).on("click",".drop_accessory",function(){
+		$(this).parent().remove();
+	});
+	$("#add_steps").click(function(){
+		$("#steps_list").append('<div>\
+				<input type="text" class="input line50" name="steps_time[]" size="50" placeholder="所需时间" data-validate="required:请填写所需时间" /><span class="drop_steps">-</span>\
+				<textarea class="input line50" name="steps[]" rows="3" cols="50" placeholder="步骤"></textarea>\
+				</div>');
+	});
+	$(document).on("click",".drop_steps",function(){
+		$(this).parent().remove();
 	});
 </script>
 <include file="Layout/footer" />
