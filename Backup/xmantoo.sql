@@ -58,10 +58,34 @@ CREATE TABLE `xman_foods` (
   `foods_name` varchar(100) NOT NULL COMMENT '菜品名称',
   `cuisines_id` int(11) unsigned NOT NULL COMMENT '菜系id',
   `status` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '状态：1正常，0关闭',
+  `cover` varchar(255) NOT NULL COMMENT '主图',
+  `content` text NOT NULL COMMENT '菜品详情',
+  `store_condition` varchar(255) DEFAULT NULL COMMENT '存储条件',
+  `store_time` float DEFAULT NULL COMMENT '存储时间(时)',
+  `add_time` int(10) NOT NULL COMMENT '添加时间',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 /*Data for the table `xman_foods` */
+
+/*Table structure for table `xman_foods_ext` */
+
+DROP TABLE IF EXISTS `xman_foods_ext`;
+
+CREATE TABLE `xman_foods_ext` (
+  `foods_id` int(11) unsigned NOT NULL COMMENT '菜品id',
+  `tools` varchar(255) NOT NULL,
+  `ingredient` varchar(255) NOT NULL,
+  `accessory` varchar(255) DEFAULT NULL,
+  `pretreatment` varchar(255) DEFAULT NULL,
+  `steps` varchar(255) NOT NULL,
+  PRIMARY KEY (`foods_id`),
+  UNIQUE KEY `PRIVATE` (`foods_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+/*Data for the table `xman_foods_ext` */
+
+insert  into `xman_foods_ext`(`foods_id`,`tools`,`ingredient`,`accessory`,`pretreatment`,`steps`) values (1,'[\"\\u9505\",\"\\u94f2\",\"\\u5200\"]','[\"\\u897f\\u74dc\\u76ae\"]','[\"\\u918b\",\"\\u8fa3\\u6912\",\"\\u6cb9\"]','将西瓜皮洗净，削去硬皮，切成西瓜皮片。','[{\"time\":\"10\",\"step\":\"\\u5c06\\u6c34\\u70e7\\u5f00\\uff0c\\u653e\\u5165\\u897f\\u74dc\\u76ae\\u7247\\uff0c\\u5f85\\u6c34\\u518d\\u5f00\\u65f6\\u635e\\u51fa\\u897f\\u74dc\\u76ae\\u3002\"},{\"time\":\"10\",\"step\":\"\\u9505\\u4e2d\\u653e\\u690d\\u7269\\u6cb9\\u70e7\\u70ed\\uff0c\\u5148\\u7092\\u847');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

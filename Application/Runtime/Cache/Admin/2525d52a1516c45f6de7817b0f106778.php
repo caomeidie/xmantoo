@@ -85,7 +85,7 @@
 				<li><a href="#tab-store">存储阶段</a></li>
 			</ul>
 		</div>
-		<form method="post" class="form-x" action="system.html">
+		<form method="post" class="form-x" action="<?php echo U('Foods/addFoods');?>" enctype="multipart/form-data" >
 			<div class="tab-body">
 				<br />
 				<div class="tab-panel active" id="tab-base">
@@ -132,7 +132,7 @@
 					</div>
 					<div class="form-group">
 						<div class="label">
-							<label for="cover">标志</label>
+							<label for="cover">主图</label>
 						</div>
 						<div class="field">
 							<a class="button input-file" href="javascript:void(0);">+ 浏览文件<input size="100" type="file" name="cover" data-validate="required:请选择上传文件,regexp#.+.(jpg|jpeg|png|gif)$:只能上传jpg|gif|png格式文件" /></a>
@@ -140,10 +140,10 @@
 					</div>
 					<div class="form-group">
 						<div class="label">
-							<label for="readme">菜品详情</label>
+							<label for="content">菜品详情</label>
 						</div>
 						<div class="field">
-							<script id="editor" type="text/plain" style="width:100%;height:300px;"></script>
+							<script id="editor" name="content" type="text/plain" style="width:100%;height:300px;"></script>
 						</div>
 					</div>
 				</div>
@@ -188,13 +188,29 @@
 						</div>
 						<div class="field" id="steps_list">
 							<div>
-							<input type="text" class="input line50" name="steps_time[]" size="50" placeholder="所需时间" data-validate="required:请填写所需时间" /><span id="add_steps">+</span>
+							<input type="text" class="input line50" name="steps_time[]" size="50" placeholder="所需时间(分)" data-validate="required:请填写所需时间" /><span id="add_steps">+</span>
 							<textarea class="input line50" name="steps[]" rows="3" cols="50" placeholder="步骤"></textarea>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="tab-panel" id="tab-store">444
+				<div class="tab-panel" id="tab-store">
+					<div class="form-group">
+						<div class="label">
+							<label for="store_condition">存储条件</label>
+						</div>
+						<div class="field" id="steps_list">
+							<input type="text" class="input" name="store_condition" size="50" placeholder="存储条件" />
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="label">
+							<label for="store_time">存储时间</label>
+						</div>
+						<div class="field">
+							<input type="text" class="input" name="store_time" size="50" placeholder="存储时间(时)" />
+						</div>
+					</div>
 				</div>
 			</div>
 		
@@ -226,7 +242,7 @@
 	});
 	$("#add_steps").click(function(){
 		$("#steps_list").append('<div>\
-				<input type="text" class="input line50" name="steps_time[]" size="50" placeholder="所需时间" data-validate="required:请填写所需时间" /><span class="drop_steps">-</span>\
+				<input type="text" class="input line50" name="steps_time[]" size="50" placeholder="所需时间(分)" data-validate="required:请填写所需时间" /><span class="drop_steps">-</span>\
 				<textarea class="input line50" name="steps[]" rows="3" cols="50" placeholder="步骤"></textarea>\
 				</div>');
 	});
