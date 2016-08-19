@@ -190,6 +190,8 @@
 							<div>
 							<input type="text" class="input line50" name="steps_time[]" size="50" placeholder="所需时间(分)" data-validate="required:请填写所需时间" /><span id="add_steps">+</span>
 							<textarea class="input line50" name="steps[]" rows="3" cols="50" placeholder="步骤"></textarea>
+							<br>
+							<a class="button input-file" href="javascript:void(0);">+ 浏览文件<input size="100" type="file" name="steps_cover[]" data-validate="required:请选择上传文件,regexp#.+.(jpg|jpeg|png|gif)$:只能上传jpg|gif|png格式文件" /></a>
 							</div>
 						</div>
 					</div>
@@ -244,7 +246,7 @@
 		$("#steps_list").append('<div>\
 				<input type="text" class="input line50" name="steps_time[]" size="50" placeholder="所需时间(分)" data-validate="required:请填写所需时间" /><span class="drop_steps">-</span>\
 				<textarea class="input line50" name="steps[]" rows="3" cols="50" placeholder="步骤"></textarea>\
-				</div>');
+				<br><a class="button input-file" href="javascript:void(0);">+ 浏览文件<input size="100" type="file" name="steps_cover[]" data-validate="required:请选择上传文件,regexp#.+.(jpg|jpeg|png|gif)$:只能上传jpg|gif|png格式文件" /></a></div>');
 	});
 	$(document).on("click",".drop_steps",function(){
 		$(this).parent().remove();

@@ -20,7 +20,7 @@ class FoodsController extends BackendController {
             $upload = new \Think\Upload();// 实例化上传类
             $upload->maxSize   =     3145728 ;// 设置附件上传大小
             $upload->exts      =     array('jpg', 'gif', 'png', 'jpeg');// 设置附件上传类型
-            $upload->rootPath  =      './Upload/images/foods/'; // 设置附件上传根目录
+            $upload->rootPath  =      './Upload/images/foods/cover/'; // 设置附件上传根目录
             $upload->subName   =     array('date', 'Ymd');
             
             // 上传单个文件 
@@ -45,9 +45,18 @@ class FoodsController extends BackendController {
                 $steps_time = I('post.steps_time');
                 $steps = I('post.steps');
                 
-                foreach($steps_time as $key=>$val){
-                    $steps_arr[$key]['time'] = $val;
-                    $steps_arr[$key]['step'] = $steps[$key];
+                $upload->rootPath  =      './Upload/images/foods/steps/'; // 设置附件上传根目录
+                var_dump($_FILES['steps_cover']);
+                $steps_cover   =   $upload->upload($_FILES['steps_cover']);
+                var_dump($steps_cover);exit();
+                if(!$steps_cover) {// 上传错误提示错误信息
+                    $this->error($upload->getError());
+                }else{// 上传成功 获取上传文件信息
+                    foreach($steps_time as $key=>$val){
+                        $steps_arr[$key]['time'] = $val;
+                        $steps_arr[$key]['step'] = $steps[$key];
+                        $steps_arr[$key]['step_cover'] = $steps_cover[$key]['savepath'].$steps_cover[$key]['savename'];
+                    }
                 }
                 
                 $data_ext['steps'] = json_encode($steps_arr);
