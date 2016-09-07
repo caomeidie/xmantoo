@@ -3,6 +3,8 @@ namespace Admin\Controller;
 use Admin\Controller\BackendController;
 class FoodsController extends BackendController {
     public function index(){
+        $list = M('Foods')->query('Call p_get_foods_details(1)');
+        var_dump($list);
         $this->display();
     }
     
@@ -23,7 +25,7 @@ class FoodsController extends BackendController {
             $upload->rootPath  =      './Upload/images/foods/cover/'; // 设置附件上传根目录
             $upload->subName   =     array('date', 'Ymd');
             
-            // 上传单个文件 
+            // 上传主图
             $info   =   $upload->uploadOne($_FILES['cover']);
             if(!$info) {// 上传错误提示错误信息
                 $this->error($upload->getError());
@@ -31,8 +33,7 @@ class FoodsController extends BackendController {
                  $data['cover'] = $info['savepath'].$info['savename'];
             }
             
-            //$foods_id = M('foods')->add($data);
-            $foods_id = 1;
+            $foods_id = M('foods')->add($data);
             
             if(!$foods_id){
                 $this->error("添加菜品失败！");
@@ -45,10 +46,20 @@ class FoodsController extends BackendController {
                 $steps_time = I('post.steps_time');
                 $steps = I('post.steps');
                 
+                //上传步骤图
                 $upload->rootPath  =      './Upload/images/foods/steps/'; // 设置附件上传根目录
-                var_dump($_FILES['steps_cover']);
-                $steps_cover   =   $upload->upload($_FILES['steps_cover']);
-                var_dump($steps_cover);exit();
+                if(!empty($_FILES['steps_cover']['name'])){
+                    foreach ($_FILES['steps_cover']['name'] as $key=>$val){
+                        $step_files[$key]['name'] = $val;
+                        $step_files[$key]['type'] = $_FILES['steps_cover']['type'][$key];
+                        $step_files[$key]['tmp_name'] = $_FILES['steps_cover']['tmp_name'][$key];
+                        $step_files[$key]['error'] = $_FILES['steps_cover']['error'][$key];
+                        $step_files[$key]['size'] = $_FILES['steps_cover']['size'][$key];
+                    }
+                }
+                
+                $steps_cover   =   $upload->upload($step_files);
+                
                 if(!$steps_cover) {// 上传错误提示错误信息
                     $this->error($upload->getError());
                 }else{// 上传成功 获取上传文件信息
@@ -61,6 +72,8 @@ class FoodsController extends BackendController {
                 
                 $data_ext['steps'] = json_encode($steps_arr);
                 $foods_id = M('foods_ext')->add($data_ext);
+                
+                $this->success('添加菜品成功！');
             }
         }else{
             $cuisines = M('cuisine')->select();
