@@ -1,5 +1,7 @@
 eclipse.preferences.version=1
 encoding//Application/Admin/View/Foods/addCuisine.html=UTF-8
 encoding//Application/Admin/View/Foods/addFoods.html=UTF-8
+encoding//Application/Admin/View/Foods/editFoods.html=UTF-8
+encoding//Application/Admin/View/Foods/index.html=UTF-8
 encoding//Application/Admin/View/Foods/listCuisine.html=UTF-8
 encoding/<project>=UTF-8

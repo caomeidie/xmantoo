@@ -78,7 +78,7 @@
 			<div class="panel-head"><strong>菜系列表</strong></div>
 			<div class="padding border-bottom">
 				<input type="button" class="button button-small checkall" name="checkall" checkfor="id" value="全选" />
-				<a href="" class="button button-small border-green">添加菜系</a>
+				<a href="<?php echo U('Foods/addCuisine');?>" class="button button-small border-green">添加菜系</a>
 				<a href="" class="button button-small border-yellow">批量删除</a>
 				<a href="" class="button button-small border-blue">回收站</a>
 			</div>

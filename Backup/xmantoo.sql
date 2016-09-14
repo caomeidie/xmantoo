@@ -64,11 +64,11 @@ CREATE TABLE `xman_foods` (
   `store_time` float DEFAULT NULL COMMENT '存储时间(时)',
   `add_time` int(10) NOT NULL COMMENT '添加时间',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 /*Data for the table `xman_foods` */
 
-insert  into `xman_foods`(`id`,`title`,`foods_name`,`cuisines_id`,`status`,`cover`,`content`,`store_condition`,`store_time`,`add_time`) values (3,'西红柿炒蛋','西红柿炒蛋',3,1,'20160907/57cfd3ba7ed2b.jpg','&lt;p&gt;这是西红柿炒蛋&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;/Upload/images/editor/20160907/1473237701121233.jpg&quot; title=&quot;1473237701121233.jpg&quot; alt=&quot;u=579466073,4029302782&amp;amp;fm=21&amp;amp;gp=0.jpg&quot;/&gt;&lt;/p&gt;','放冰箱冷藏',24,1473237946);
+insert  into `xman_foods`(`id`,`title`,`foods_name`,`cuisines_id`,`status`,`cover`,`content`,`store_condition`,`store_time`,`add_time`) values (3,'西红柿炒蛋','西红柿炒蛋',3,1,'20160907/57cfd3ba7ed2b.jpg','&lt;p&gt;这是西红柿炒蛋&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;/Upload/images/editor/20160907/1473237701121233.jpg&quot; title=&quot;1473237701121233.jpg&quot; alt=&quot;u=579466073,4029302782&amp;amp;fm=21&amp;amp;gp=0.jpg&quot;/&gt;&lt;/p&gt;','放冰箱冷藏',24,1473237946),(4,'沈氏红烧肉','红烧肉',4,1,'20160914/57d8c822f391b.jpg','&lt;p&gt;沈氏红烧肉的做法&lt;/p&gt;','阴凉地',12,1473824802);
 
 /*Table structure for table `xman_foods_ext` */
 
@@ -87,7 +87,7 @@ CREATE TABLE `xman_foods_ext` (
 
 /*Data for the table `xman_foods_ext` */
 
-insert  into `xman_foods_ext`(`foods_id`,`tools`,`ingredient`,`accessory`,`pretreatment`,`steps`) values (3,'[\"\\u9505\\uff0c\\u94f2\\u5b50\\uff0c\\u6253\\u86cb\\u5668\\uff0c\\u7897\"]','[\"\\u897f\\u7ea2\\u67ff\\uff0c\\u9e21\\u86cb\"]','[\"\\u6cb9\\uff0c\\u7cd6\\uff0c\\u76d0\"]','1.西红柿切块\r\n2.鸡蛋打成蛋液','[{\"time\":\"3\",\"step\":\"\\u70ed\\u9505\\uff0c\\u5012\\u6cb9\\uff0c\\u70e7\\u81f35\\u6210\\u70ed\",\"step_cover\":\"20160907\\/57cfd3ba8e72f.jpg\"},{\"time\":\"5\",\"step\":\"\\u5012\\u5165\\u86cb\\u6db2\\uff0c\\u714e\\u86cb\\uff0c\\u5e76\\u628a\\u86cb\\u94f2\\u788e\",\"step_cover\":\"20160907\\/57c');
+insert  into `xman_foods_ext`(`foods_id`,`tools`,`ingredient`,`accessory`,`pretreatment`,`steps`) values (3,'[\"\\u9505\\uff0c\\u94f2\\u5b50\\uff0c\\u6253\\u86cb\\u5668\\uff0c\\u7897\"]','[\"\\u897f\\u7ea2\\u67ff\\uff0c\\u9e21\\u86cb\"]','[\"\\u6cb9\\uff0c\\u7cd6\\uff0c\\u76d0\"]','1.西红柿切块\r\n2.鸡蛋打成蛋液','[{\"time\":\"3\",\"step\":\"\\u70ed\\u9505\\uff0c\\u5012\\u6cb9\\uff0c\\u70e7\\u81f35\\u6210\\u70ed\",\"step_cover\":\"20160907\\/57cfd3ba8e72f.jpg\"},{\"time\":\"5\",\"step\":\"\\u5012\\u5165\\u86cb\\u6db2\\uff0c\\u714e\\u86cb\\uff0c\\u5e76\\u628a\\u86cb\\u94f2\\u788e\",\"step_cover\":\"20160907\\/57c'),(4,'[\"\\u5200\\uff0c\\u94f2\\uff0c\\u94c1\\u9505\\uff0c\\u9ad8\\u538b\\u9505\"]','[\"\\u732a\\u4e94\\u82b1\\u8089\"]','[\"\\u751f\\u59dc\\uff0c\\u5927\\u849c\\uff0c\\u9171\\u6cb9\\uff0c\\u8001\\u62bd\"]','猪五花肉洗净\r\n姜蒜切成块','[{\"time\":\"10\",\"step\":\"\\u4e94\\u82b1\\u8089\\u5207\\u5757\\uff0c\\u653e\\u5165\\u5f00\\u6c34\\u716e\\u81f3\\u53d8\\u767d\",\"step_cover\":\"20160914\\/57d8c8231bfea.jpg\"},{\"time\":\"20\",\"step\":\"\\u653e\\u5165\\u9ad8\\u538b\\u9505\",\"step_cover\":\"20160914\\/57d8c8231cba2.jpg\"}]');
 
 /* Procedure structure for procedure `p_get_foods_details` */
 
@@ -98,9 +98,9 @@ DELIMITER $$
 /*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `p_get_foods_details`(IN cond INT)
 BEGIN
 	IF cond > 0 THEN
-	    SELECT f.*, fe.tools, fe.ingredient, fe.accessory, fe.pretreatment, fe.steps FROM xman_foods f LEFT JOIN xman_foods_ext fe ON f.id = fe.foods_id WHERE f.id = cond;
+	    SELECT f.*, c.cname, fe.tools, fe.ingredient, fe.accessory, fe.pretreatment, fe.steps FROM xman_foods f LEFT JOIN xman_cuisine c on f.cuisines_id = c.id LEFT JOIN xman_foods_ext fe ON f.id = fe.foods_id WHERE f.id = cond;
 	ELSE
-	    SELECT f.*, fe.tools, fe.ingredient, fe.accessory, fe.pretreatment, fe.steps FROM xman_foods f LEFT JOIN xman_foods_ext fe ON f.id = fe.foods_id;
+	    SELECT f.*, c.cname, fe.tools, fe.ingredient, fe.accessory, fe.pretreatment, fe.steps FROM xman_foods f LEFT JOIN xman_cuisine c ON f.cuisines_id = c.id LEFT JOIN xman_foods_ext fe ON f.id = fe.foods_id;
 	END IF;
     END */$$
 DELIMITER ;
