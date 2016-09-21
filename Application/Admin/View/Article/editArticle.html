@@ -6,10 +6,10 @@
     <div class="tab">
         <div class="tab-head">
             <ul class="tab-nav">
-                <li class="active"><a href="#tab-base">添加文章</a></li>
+                <li class="active"><a href="#tab-base">编辑文章</a></li>
             </ul>
         </div>
-        <form method="post" class="form-x" action="{:U('Article/addArticle')}" enctype="multipart/form-data" >
+        <form method="post" class="form-x" action="{:U('Article/editArticle',array('id'=>$info['id']))}" enctype="multipart/form-data" >
             <div class="tab-body">
                 <br />
                 <div class="tab-panel active" id="tab-base">
@@ -18,7 +18,7 @@
                             <label for="subtitle">标题</label>
                         </div>
                         <div class="field">
-                            <input type="text" class="input" id="title" name="title" size="50" placeholder="请填写标题" data-validate="required:请填写标题" />
+                            <input type="text" class="input" id="title" name="title" value="{$info.article_title}" size="50" placeholder="请填写标题" data-validate="required:请填写标题" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -26,7 +26,7 @@
                             <label for="foods_name">概述</label>
                         </div>
                         <div class="field">
-                            <textarea class="input" id="profile" name="profile" rows="5" cols="50" placeholder="概述"></textarea>
+                            <textarea class="input" id="profile" name="profile" rows="5" cols="50" placeholder="概述">{$info.article_profile}</textarea>
                         </div>
                     </div>
                     <div class="form-group">
@@ -36,8 +36,8 @@
                         <div class="field">
                             <div class="button-group button-group-small radio">
                                 <select name="type">
-                                    <option value="1" selected>文章</option>
-                                    <option value="2">公告</option>
+                                    <option value="1" <if condition="$info.article_type eq 1">selected</if>>文章</option>
+                                    <option value="2" <if condition="$info.article_type eq 2">selected</if>>公告</option>
                                 </select>
                             </div>
                         </div>
@@ -61,5 +61,8 @@
 </div>
 <script type="text/javascript">
     var ue = UE.getEditor('editor');
+    ue.addListener("ready", function () {
+        ue.setContent('{$info.article_content}');
+    });
 </script>
 <include file="Layout/footer" />
