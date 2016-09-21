@@ -111,7 +111,7 @@ class FoodsController extends BackendController {
             $foods_id = M('foods')->add($data);
     
             if(!$foods_id){
-                $this->error("添加菜品失败！");
+                $this->error("编辑菜品失败！");
             }else{
                 $data_ext['foods_id'] = $foods_id;
                 $data_ext['tools'] = json_encode(I('post.tools'));
@@ -148,10 +148,11 @@ class FoodsController extends BackendController {
                 $data_ext['steps'] = json_encode($steps_arr);
                 $foods_id = M('foods_ext')->add($data_ext);
     
-                $this->success('添加菜品成功！');
+                $this->success('编辑菜品成功！');
             }
         }else{
             $foods_info = M('Foods')->query('Call p_get_foods_details('.$id.')');
+            $foods_info[0]['content'] = htmlspecialchars_decode($foods_info[0]['content']);
             $this->assign('info',$foods_info[0]);
             
             $cuisines = M('cuisine')->select();
