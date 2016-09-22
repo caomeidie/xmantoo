@@ -32,6 +32,25 @@ CREATE TABLE `xman_admin` (
 
 insert  into `xman_admin`(`id`,`admin_name`,`password`,`add_time`) values (1,'admin','7c4a8d09ca3762af61e59520943dc26494f8941b',0);
 
+/*Table structure for table `xman_article` */
+
+DROP TABLE IF EXISTS `xman_article`;
+
+CREATE TABLE `xman_article` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `article_title` varchar(100) NOT NULL,
+  `article_profile` varchar(255) NOT NULL,
+  `article_content` text NOT NULL,
+  `article_status` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '1:正常，0：关闭',
+  `article_type` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '1:文章，2：公告',
+  `add_time` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+/*Data for the table `xman_article` */
+
+insert  into `xman_article`(`id`,`article_title`,`article_profile`,`article_content`,`article_status`,`article_type`,`add_time`) values (1,'第一篇文章','第一篇文章概述2432','&lt;p&gt;阿飞萨芬大&lt;img src=&quot;/Upload/images/editor/20160921/1474447531779176.jpg&quot; title=&quot;1474447531779176.jpg&quot; alt=&quot;下载.jpg&quot;/&gt;asfsaafdsafdsa&lt;/p&gt;',1,1,1474447533);
+
 /*Table structure for table `xman_cuisine` */
 
 DROP TABLE IF EXISTS `xman_cuisine`;
@@ -64,11 +83,11 @@ CREATE TABLE `xman_foods` (
   `store_time` float DEFAULT NULL COMMENT '存储时间(时)',
   `add_time` int(10) NOT NULL COMMENT '添加时间',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 /*Data for the table `xman_foods` */
 
-insert  into `xman_foods`(`id`,`title`,`foods_name`,`cuisines_id`,`status`,`cover`,`content`,`store_condition`,`store_time`,`add_time`) values (3,'西红柿炒蛋','西红柿炒蛋',3,1,'20160907/57cfd3ba7ed2b.jpg','&lt;p&gt;这是西红柿炒蛋&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;/Upload/images/editor/20160907/1473237701121233.jpg&quot; title=&quot;1473237701121233.jpg&quot; alt=&quot;u=579466073,4029302782&amp;amp;fm=21&amp;amp;gp=0.jpg&quot;/&gt;&lt;/p&gt;','放冰箱冷藏',24,1473237946),(4,'沈氏红烧肉','红烧肉',4,1,'20160914/57d8c822f391b.jpg','&lt;p&gt;沈氏红烧肉的做法&lt;/p&gt;','阴凉地',12,1473824802);
+insert  into `xman_foods`(`id`,`title`,`foods_name`,`cuisines_id`,`status`,`cover`,`content`,`store_condition`,`store_time`,`add_time`) values (3,'西红柿炒蛋','西红柿炒蛋',3,1,'20160907/57cfd3ba7ed2b.jpg','&lt;p&gt;这是西红柿炒蛋&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;/Upload/images/editor/20160907/1473237701121233.jpg&quot; title=&quot;1473237701121233.jpg&quot; alt=&quot;u=579466073,4029302782&amp;amp;fm=21&amp;amp;gp=0.jpg&quot;/&gt;&lt;/p&gt;','放冰箱冷藏',24,1473237946),(4,'沈氏红烧肉','红烧肉',4,1,'20160914/57d8c822f391b.jpg','&lt;p&gt;沈氏红烧肉的做法&lt;/p&gt;','阴凉地',12,1473824802),(7,'萨斯是否','啊首发身份的',1,1,'20160921/57e247751b9cd.jpg','&lt;p&gt;阿飞萨芬杀&lt;/p&gt;','',0,1474447221);
 
 /*Table structure for table `xman_foods_ext` */
 
@@ -87,7 +106,7 @@ CREATE TABLE `xman_foods_ext` (
 
 /*Data for the table `xman_foods_ext` */
 
-insert  into `xman_foods_ext`(`foods_id`,`tools`,`ingredient`,`accessory`,`pretreatment`,`steps`) values (3,'[\"\\u9505\\uff0c\\u94f2\\u5b50\\uff0c\\u6253\\u86cb\\u5668\\uff0c\\u7897\"]','[\"\\u897f\\u7ea2\\u67ff\\uff0c\\u9e21\\u86cb\"]','[\"\\u6cb9\\uff0c\\u7cd6\\uff0c\\u76d0\"]','1.西红柿切块\r\n2.鸡蛋打成蛋液','[{\"time\":\"3\",\"step\":\"\\u70ed\\u9505\\uff0c\\u5012\\u6cb9\\uff0c\\u70e7\\u81f35\\u6210\\u70ed\",\"step_cover\":\"20160907\\/57cfd3ba8e72f.jpg\"},{\"time\":\"5\",\"step\":\"\\u5012\\u5165\\u86cb\\u6db2\\uff0c\\u714e\\u86cb\\uff0c\\u5e76\\u628a\\u86cb\\u94f2\\u788e\",\"step_cover\":\"20160907\\/57c'),(4,'[\"\\u5200\\uff0c\\u94f2\\uff0c\\u94c1\\u9505\\uff0c\\u9ad8\\u538b\\u9505\"]','[\"\\u732a\\u4e94\\u82b1\\u8089\"]','[\"\\u751f\\u59dc\\uff0c\\u5927\\u849c\\uff0c\\u9171\\u6cb9\\uff0c\\u8001\\u62bd\"]','猪五花肉洗净\r\n姜蒜切成块','[{\"time\":\"10\",\"step\":\"\\u4e94\\u82b1\\u8089\\u5207\\u5757\\uff0c\\u653e\\u5165\\u5f00\\u6c34\\u716e\\u81f3\\u53d8\\u767d\",\"step_cover\":\"20160914\\/57d8c8231bfea.jpg\"},{\"time\":\"20\",\"step\":\"\\u653e\\u5165\\u9ad8\\u538b\\u9505\",\"step_cover\":\"20160914\\/57d8c8231cba2.jpg\"}]');
+insert  into `xman_foods_ext`(`foods_id`,`tools`,`ingredient`,`accessory`,`pretreatment`,`steps`) values (3,'[\"\\u9505\\uff0c\\u94f2\\u5b50\\uff0c\\u6253\\u86cb\\u5668\\uff0c\\u7897\"]','[\"\\u897f\\u7ea2\\u67ff\\uff0c\\u9e21\\u86cb\"]','[\"\\u6cb9\\uff0c\\u7cd6\\uff0c\\u76d0\"]','1.西红柿切块\r\n2.鸡蛋打成蛋液','[{\"time\":\"3\",\"step\":\"\\u70ed\\u9505\\uff0c\\u5012\\u6cb9\\uff0c\\u70e7\\u81f35\\u6210\\u70ed\",\"step_cover\":\"20160907\\/57cfd3ba8e72f.jpg\"},{\"time\":\"5\",\"step\":\"\\u5012\\u5165\\u86cb\\u6db2\\uff0c\\u714e\\u86cb\\uff0c\\u5e76\\u628a\\u86cb\\u94f2\\u788e\",\"step_cover\":\"20160907\\/57c'),(4,'[\"\\u5200\\uff0c\\u94f2\\uff0c\\u94c1\\u9505\\uff0c\\u9ad8\\u538b\\u9505\"]','[\"\\u732a\\u4e94\\u82b1\\u8089\"]','[\"\\u751f\\u59dc\\uff0c\\u5927\\u849c\\uff0c\\u9171\\u6cb9\\uff0c\\u8001\\u62bd\"]','猪五花肉洗净\r\n姜蒜切成块','[{\"time\":\"10\",\"step\":\"\\u4e94\\u82b1\\u8089\\u5207\\u5757\\uff0c\\u653e\\u5165\\u5f00\\u6c34\\u716e\\u81f3\\u53d8\\u767d\",\"step_cover\":\"20160914\\/57d8c8231bfea.jpg\"},{\"time\":\"20\",\"step\":\"\\u653e\\u5165\\u9ad8\\u538b\\u9505\",\"step_cover\":\"20160914\\/57d8c8231cba2.jpg\"}]'),(7,'[\"\\u554a\\u9996\\u53d1\\u8428\\u51e1\\u8fbe\"]','[\"\\u554a\\u9996\\u53d1\\u8428\\u51e1\"]','[\"\\u554a\\u9996\\u53d1\\u5927\\u6492\\u65e6\\u6cd5\"]','','[{\"time\":\"12\",\"step\":\"\\u963f\\u65b9\\u7d22\\u77ed\\u53d1\\u554a\",\"step_cover\":\"20160921\\/57e2477520406.jpg\"}]');
 
 /* Procedure structure for procedure `p_get_foods_details` */
 
