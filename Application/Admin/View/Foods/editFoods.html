@@ -89,7 +89,14 @@
 							<label for="tools">所需工具</label>
 						</div>
 						<div class="field" id="tools_list">
-							<div><input type="text" class="input line70" name="tools[]" size="50" placeholder="工具名" data-validate="required:请填写工具名" /><span id="add_tools">+</span></div>
+							<volist name="$info.tools" id="vo">
+								<if condition="$i eq 1">
+									<div><input type="text" class="input line70" name="tools[]" value="{$vo}" size="50" placeholder="工具名" data-validate="required:请填写工具名" /><span id="add_tools">+</span></div>
+								<else />
+									<div><input type="text" class="input line70" name="tools[]" value="{$vo}" size="50" placeholder="工具名" data-validate="required:请填写工具名" /><span class="drop_tools">-</span></div>
+								</if>
+							</volist>
+							
 						</div>
 					</div>
 					<div class="form-group">
@@ -113,7 +120,7 @@
 							<label for="pretreatment">预处理</label>
 						</div>
 						<div class="field">
-							<textarea class="input" id="pretreatment" name="pretreatment" rows="5" cols="50" placeholder="预处理"></textarea>
+							<textarea class="input" id="pretreatment" name="pretreatment" rows="5" cols="50" placeholder="预处理">{$info.pretreatment}</textarea>
 						</div>
 					</div>
 				</div>

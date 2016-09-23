@@ -153,6 +153,10 @@ class FoodsController extends BackendController {
         }else{
             $foods_info = M('Foods')->query('Call p_get_foods_details('.$id.')');
             $foods_info[0]['content'] = htmlspecialchars_decode($foods_info[0]['content']);
+            $foods_info[0]['tools'] = json_decode($foods_info[0]['tools']);
+            $foods_info[0]['ingredient'] = json_decode($foods_info[0]['ingredient']);
+            $foods_info[0]['accessory'] = json_decode($foods_info[0]['accessory']);
+            $foods_info[0]['steps'] = json_decode($foods_info[0]['steps']);
             $this->assign('info',$foods_info[0]);
             
             $cuisines = M('cuisine')->select();
